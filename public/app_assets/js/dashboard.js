@@ -112,7 +112,7 @@
               ticks: {
                 display: true,
                 color:"#6C7383",
-                    
+
               },
             },
             y: {
@@ -164,9 +164,9 @@
             }
         }]
       });
-    
+
     }
-    if ($("#north-america-chart").length) { 
+    if ($("#north-america-chart").length) {
       const doughnutChartCanvas = document.getElementById('north-america-chart');
       new Chart(doughnutChartCanvas, {
         type: 'doughnut',
@@ -214,7 +214,7 @@
         }]
       });
     }
-    if ($("#south-america-chart").length) { 
+    if ($("#south-america-chart").length) {
       const doughnutChartCanvas = document.getElementById('south-america-chart');
       new Chart(doughnutChartCanvas, {
         type: 'doughnut',
@@ -263,15 +263,15 @@
       });
     }
 
-    if ($.cookie('skydash-pro-banner')!="true") {
-      document.querySelector('#proBanner').classList.add('d-flex');
-      document.querySelector('.navbar').classList.remove('fixed-top');
-    }
-    else {
-      document.querySelector('#proBanner').classList.add('d-none');
-      document.querySelector('.navbar').classList.add('fixed-top');
-    }
-    
+    // if ($.cookie('skydash-pro-banner')!="true") {
+    //   document.querySelector('#proBanner').classList.add('d-flex');
+    //   document.querySelector('.navbar').classList.remove('fixed-top');
+    // }
+    // else {
+    //   document.querySelector('#proBanner').classList.add('d-none');
+    //   document.querySelector('.navbar').classList.add('fixed-top');
+    // }
+
     if ($( ".navbar" ).hasClass( "fixed-top" )) {
       document.querySelector('.page-body-wrapper').classList.remove('pt-0');
       document.querySelector('.navbar').classList.remove('pt-5');
@@ -280,19 +280,19 @@
       document.querySelector('.page-body-wrapper').classList.add('pt-0');
       document.querySelector('.navbar').classList.add('pt-5');
       document.querySelector('.navbar').classList.add('mt-3');
-      
+
     }
-    document.querySelector('#bannerClose').addEventListener('click',function() {
-      document.querySelector('#proBanner').classList.add('d-none');
-      document.querySelector('#proBanner').classList.remove('d-flex');
-      document.querySelector('.navbar').classList.remove('pt-5');
-      document.querySelector('.navbar').classList.add('fixed-top');
-      document.querySelector('.page-body-wrapper').classList.add('pt-5');
-      document.querySelector('.navbar').classList.remove('mt-3');
-      var date = new Date();
-      date.setTime(date.getTime() + 24 * 60 * 60 * 1000); 
-      $.cookie('skydash-pro-banner', "true", { expires: date });
-    });
+    // document.querySelector('#bannerClose').addEventListener('click',function() {
+    //   document.querySelector('#proBanner').classList.add('d-none');
+    //   document.querySelector('#proBanner').classList.remove('d-flex');
+    //   document.querySelector('.navbar').classList.remove('pt-5');
+    //   document.querySelector('.navbar').classList.add('fixed-top');
+    //   document.querySelector('.page-body-wrapper').classList.add('pt-5');
+    //   document.querySelector('.navbar').classList.remove('mt-3');
+    //   var date = new Date();
+    //   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
+    //   $.cookie('skydash-pro-banner', "true", { expires: date });
+    // });
 
     function format ( d ) {
       // `d` is the original data object for the row
@@ -302,51 +302,51 @@
           '</tr>'+
       '</table>';
   }
-    var table = $('#example').DataTable( {
-      "ajax": "../assets/js/data.txt",
-      "columns": [
-          { "data": "Quote" },
-          { "data": "Product" },
-          { "data": "Business" },
-          { "data": "Policy" }, 
-          { "data": "Premium" }, 
-          { "data": "Status" }, 
-          { "data": "Updated" }, 
-          {
-            "className":      'details-control',
-            "orderable":      false,
-            "data":           null,
-            "defaultContent": ''
-          }
-      ],
-      "order": [[1, 'asc']],
-      "paging":   false,
-      "ordering": true,
-      "info":     false,
-      "filter": false,
-      columnDefs: [{
-        orderable: false,
-        className: 'select-checkbox',
-        targets: 0
-      }],
-      select: {
-        style: 'os',
-        selector: 'td:first-child'
-      }
-    } );
-    $('#example tbody').on('click', 'td.details-control', function () {
-      var tr = $(this).closest('tr');
-      var row = table.row( tr );
-      if ( row.child.isShown() ) {
-          // This row is already open - close it
-          row.child.hide();
-          tr.removeClass('shown');
-      }
-      else {
-          // Open this row
-          row.child( format(row.data()) ).show();
-          tr.addClass('shown');
-      }
-    });
+    // var table = $('#example').DataTable( {
+    //   "ajax": "../assets/js/data.txt",
+    //   "columns": [
+    //       { "data": "Quote" },
+    //       { "data": "Product" },
+    //       { "data": "Business" },
+    //       { "data": "Policy" },
+    //       { "data": "Premium" },
+    //       { "data": "Status" },
+    //       { "data": "Updated" },
+    //       {
+    //         "className":      'details-control',
+    //         "orderable":      false,
+    //         "data":           null,
+    //         "defaultContent": ''
+    //       }
+    //   ],
+    //   "order": [[1, 'asc']],
+    //   "paging":   false,
+    //   "ordering": true,
+    //   "info":     false,
+    //   "filter": false,
+    //   columnDefs: [{
+    //     orderable: false,
+    //     className: 'select-checkbox',
+    //     targets: 0
+    //   }],
+    //   select: {
+    //     style: 'os',
+    //     selector: 'td:first-child'
+    //   }
+    // } );
+    // $('#example tbody').on('click', 'td.details-control', function () {
+    //   var tr = $(this).closest('tr');
+    //   var row = table.row( tr );
+    //   if ( row.child.isShown() ) {
+    //       // This row is already open - close it
+    //       row.child.hide();
+    //       tr.removeClass('shown');
+    //   }
+    //   else {
+    //       // Open this row
+    //       row.child( format(row.data()) ).show();
+    //       tr.addClass('shown');
+    //   }
+    // });
   });
 })(jQuery);

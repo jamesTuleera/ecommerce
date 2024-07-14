@@ -1,27 +1,35 @@
 @extends('layouts.auth')
 @section('content')
     <h4>New here?</h4>
+
     <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
-    <form class="pt-3">
+    <form class="pt-3" action="{{ route('register') }}" method="POST">
+        @foreach ($errors->all() as $error)
+
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endforeach
+        @csrf
         <div class="form-group">
-            <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username">
+            <input type="text" name="name" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Fullname">
         </div>
         <div class="form-group">
-            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+            <input type="email" name="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
         </div>
+        
         <div class="form-group">
-            <select class="form-select form-select-lg" id="exampleFormControlSelect2">
-                <option>Country</option>
-                <option>United States of America</option>
-                <option>United Kingdom</option>
-                <option>India</option>
-                <option>Germany</option>
-                <option>Argentina</option>
-            </select>
+            <input type="phone" name="phone" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Phone number">
         </div>
+
+
         <div class="form-group">
-            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" name="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
         </div>
+
+
+        <div class="form-group">
+            <input type="password" name="password_confirmation" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Confirm password">
+        </div>
+
         <div class="mb-4">
             <div class="form-check">
                 <label class="form-check-label text-muted">
