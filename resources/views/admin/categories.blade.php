@@ -70,7 +70,7 @@
                                             <p class="d-flex justify-content-between"> <span>{{ $sn++ }}. &nbsp;
                                                     {{ $category->name }}</span>
                                                 <span>
-                                                    <a href="" class="btn btn-sm btn-primary"><i
+                                                    <a href="" class="btn btn-sm btn-outline-primary"><i
                                                             class="fa fa-eye"></i></a>
 
 
@@ -80,8 +80,8 @@
                                                     </button>
 
 
-                                                    <a href="{{ route('admin.delete.category', $category->id) }}"
-                                                        class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                    <a   onclick="return confirm('Are you sure want to delete this category?')" href="{{ route('admin.delete.category', $category->id) }}"
+                                                        class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
                                                 </span>
                                             </p>
                                             <hr class="p-1 b-1 m-1">

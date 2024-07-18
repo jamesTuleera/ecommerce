@@ -14,7 +14,7 @@
 
 
 
-<!-- Button trigger modal -->
+                        <!-- Button trigger modal -->
 
 
                         <div class="row mt-5">
@@ -23,41 +23,42 @@
 
                                     <div class="card-body p-4">
                                         <h4>Add product</h4>
-                                        <form action="{{ route('admin.create.category') }}" method="POST" class="mt-5">
+                                        <form action="{{ route('admin.create.product') }}" enctype="multipart/form-data"
+                                            method="POST" class="mt-5">
                                             <div class="row">
                                                 @csrf
-                                            <div class="form-group col-md-6">
-                                                <label for="">Name</label>
-                                                <input type="text" placeholder="Product name" name="name"
-                                                    class="form-control form-control-sm">
-                                            </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Name</label>
+                                                    <input type="text" placeholder="Product name" name="name"
+                                                        class="form-control form-control-sm">
+                                                </div>
 
-                                            <div class="form-group col-md-6">
-                                                <label for="">Price</label>
-                                                <input type="number" placeholder="Price" name="name"
-                                                    class="form-control form-control-sm">
-                                            </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Price</label>
+                                                    <input type="number" placeholder="Price" name="price"
+                                                        class="form-control form-control-sm">
+                                                </div>
 
-                                            <div class="form-group col-md-6">
-                                                <label for="">Category</label>
-                                                <select name="category" id="" class="form-select">
-                                                    @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Category</label>
+                                                    <select name="category_id" id="" class="form-select">
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ $category->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
 
-                                            <div class="form-group col-md-6">
-                                                <label for="">Image</label>
-                                                <input type="file" name="name"
-                                                    class="form-control form-control-sm">
-                                            </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="">Image</label>
+                                                    <input type="file" name="images[]" multiple
+                                                        class="form-control form-control-sm">
+                                                </div>
 
-                                            <div class="form-group col-md-12">
-                                                <label for="">Description</label>
-                                                <textarea  placeholder="Description" name="name"
-                                                    class="form-control"></textarea>
-                                            </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="">Description</label>
+                                                    <textarea placeholder="Description" name="description" class="form-control"></textarea>
+                                                </div>
 
 
                                             </div>
@@ -85,13 +86,17 @@
                                                 </form>
                                             </span>
                                         </div>
-                                        <div class="d-flex justify-content-between mt-3">
+                                        {{-- <div class="d-flex justify-content-between mt-3">
                                             <strong>Item</strong>
                                             <span class="">
                                                 <strong>Action</strong>
                                             </span>
                                         </div>
-                                        <hr class="p-1 b-1 m-2">
+                                        <hr class="p-1 b-1 m-2"> --}}
+
+                                        <div class="table">
+                                                @include('components.product.table', ['products' => $products])
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -115,5 +120,4 @@
         </footer>
         <!-- partial -->
     </div>
-
-    @endSection
+@endSection
