@@ -23,10 +23,19 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function productImage()
+    public function productImg()
     {
-        return $this->productImages()->first();
+        return $this->productImages()->first()->name ?? null;
     }
+
+    public function productImgs()
+    {
+        return $this->productImages()->get();
+    }
+
+    // public $image = $this->productImage()->name;
+    // public static $img = $this->productImage()->name;
+
 
 
 

@@ -39,7 +39,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::prefix('product')->group(function(){
         Route::get('/', [ProductController::class, 'index'])->name('admin.product');
         Route::post('/create', [ProductController::class, 'create'])->name('admin.create.product');
+        Route::get('/search', [ProductController::class, 'search'])->name('admin.search.products');
+        Route::get('/edit/{product_id}', [ProductController::class, 'update'])->name('admin.update.product');
 
+        Route::prefix('images')->group(function(){
+            Route::get('delete/{id}', [ProductController::class, 'deleteImage'])->name('admin.delete.product.image');
+
+            // Route::get('/update/{product_id}', [ProductController::class, 'update'])->name('admin.update.product');
+
+        });
     });
 
 

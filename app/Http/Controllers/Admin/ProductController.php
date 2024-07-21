@@ -11,10 +11,23 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
+    protected $categories;
+
+
+    public function __construct()
+    {
+        $this->categories = Category::all();
+    }
+
     public function index()
     {
         $categories = Category::all();
-        $products = Product::paginate(5);
+        $products = Product::paginate(10);
+
+
+
+
 
         return view(
             'admin.product.index',
@@ -52,4 +65,38 @@ class ProductController extends Controller
         return back()->with('success', 'Product added successfully');
 
     }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $name = '%' . $request->name . '%';
+        $products = Product::where('name', 'LIKE', $name)->paginate(5);
+        $categories = Category::all();
+
+        return view('admin.product.index', compact('products', 'categories'));
+
+    }
+
+
+    public function update($product_id)
+    {
+
+        $product = Product::findOrFail($product_id);
+
+        return view('admin.product.update', ['product' => $product, 'categories' => $this->categories]);
+
+
+    }
+
+
+    public function deleteImage($id){
+
+        ProductImage::find($id)->delete();
+        return back()->with('success', 'Image deleted successfully');
+    }
+
+
 }

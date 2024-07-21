@@ -26,6 +26,10 @@ class CategoryController extends Controller
     }
 
     public function search(Request $request){
+        $request->validate([
+            'name' => 'required'
+        ]);
+        
         $name = $request->name;
 
         $like = '%'.$request->name.'%';
